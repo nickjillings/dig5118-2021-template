@@ -24,8 +24,8 @@ void loop() {
   // put your main code here, to run repeatedly
   w = TWO_PI * f0 / Fs;
   float sample = sineWave();
-  Serial.print(angle);
-  Serial.print("\t");
+  //Serial.print(angle);
+  //Serial.print("\t");
   Serial.println(sample); //scaling to integer
   delay(ts*1000);
 }
