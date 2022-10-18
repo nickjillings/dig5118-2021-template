@@ -8,10 +8,15 @@ Serial.begin(9600);
 }
 void loop() {
 sensorValue = analogRead(A0);
-//Serial.println(sensorValue);
 PWMvalue = sensorValue*255; 
 PWMvalue = int(PWMvalue/1023);
 //PWMvalue = map(sensorValue, 0, 1023, 0, 255);
-Serial.println(PWMvalue);
 analogWrite(ledPin, PWMvalue);
+//check from the serail monitor and serial plotter
+Serial.print("InputPotValue:");
+Serial.print(sensorValue);
+Serial.print(",");
+Serial.print("PWM Value:");
+Serial.print(PWMvalue);
+Serial.println();
 }
