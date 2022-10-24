@@ -1,4 +1,3 @@
-#define TWO_PI 6.283185307179586476925286766559
 float Fs = 800; // 8Hz sampling rate
 float f0 = 10; //1Hz frequency
 float ts = 1/Fs;
