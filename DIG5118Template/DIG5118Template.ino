@@ -25,6 +25,8 @@
 int PROG_PIN = 12; // Which pin is our programming switch on?
 int PROG_LED = 13; // Which pin is our programming LED on?
 
+  int counter =0;
+
 void setup() {
   // Define the roles for our programming switch and LED pins.
   pinMode(PROG_PIN, INPUT);
@@ -112,8 +114,14 @@ void loop() {
   // But 10 times a second seems reasonable.
   // We use loop to set a 'promisy' update loop.
   // We will not update faster than 10 times a second
+
+  //Serial.print(counter);
+  //Serial.print('\n');
+  
   updateControl();
   delay(100); // Set to 100ms or 10Hz
+    counter=counter+1;
+
   /*
    * DO NOT ADD YOU'RE OWN CODE HERE
    * 
@@ -124,18 +132,10 @@ void loop() {
 /*
  *  IGNORE ALL OF THE ABOVE AND MODIFY FROM HERE ON IN!
  */
-//#define TWO_PI 6.283185307179586476925286766559
-// ===== GLOBAL VARIABLES =====
-const float Fs = 50000;
-float f0 = 500;
-float ts = 1/Fs;
-float w = TWO_PI*f0;
-float dw = w*ts;
-float angle = 0;
 
-int Amp=1;
-uint8_t sample = 0;
-int16_t counter = 0;
+// ===== GLOBAL VARIABLES =====
+
+int Control_value;
 
 // ===== GLOBAL VARIABLES =====
 
@@ -152,34 +152,24 @@ void userSetup()
    */
 }
 
-uint8_t updateAudio()
+int8_t updateAudio()
 {
   /*
    * Our audio processing function
    * Get's called at 50kHz sampling rate.
    * Return the next sample to be played at 8-bit resolution
    */
-   int AudioValue;
-   float sig = sin(angle)*Amp;
-   angle = angle + dw;
-   if (angle > TWO_PI){
-      angle=angle-TWO_PI;
-    }
-   AudioValue=sig;
-   //YW debug using Serail
-   Serial.println(sig);
-   return AudioValue;
+  Serial.println(Control_value);
+   return 0;
 }
 
 void updateControl()
-{
+{ 
   /*
    * Update control loop.
    * Use this to update any non-audio signals, such as reading from a pot or calcultating
    * filter coefficients.
    * This gets called at a frequency of 10Hz.
    */
-  //f0 = 0.5;
-  //w = TWO_PI*f0/Fs;
-  Amp = analogRead(A0);
+   Control_value = analogRead(A0);
 }
