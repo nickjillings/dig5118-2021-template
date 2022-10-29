@@ -157,7 +157,10 @@ uint8_t updateAudio()
    */
    float a = sin(angle);
    angle = angle + w;
-   return (a+1)*127;
+   int AudioValue=(a+1)*127;
+   //YW debug using Serail
+   Serail.
+   return AudioValue;
 }
 
 void updateControl()
