@@ -46,7 +46,7 @@ void setup() {
     DDRD = B11111111;
     PORTD = B00000000;
 
-    cli();//stop interrupts to allow us to reconfigure the interupts safely.
+    cli();//stop interrupts to allow us to reconfigure the interrupts safely.
 
     //set timer1 interrupt at 62.5kHz
     TCCR1A = 0;// set entire TCCR1A register to 0
@@ -175,7 +175,7 @@ void updateControl()
 {
   /*
    * Update control loop.
-   * Use this to update any non-audio signals, such as reading from a pot or calcultating
+   * Use this to update any non-audio signals, such as reading from a pot or calculating
    * filter coefficients.
    * This gets called at a frequency of 10Hz.
    */

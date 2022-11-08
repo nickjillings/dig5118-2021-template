@@ -6,7 +6,7 @@
 // #define EULER 2.718281828459045235360287471352
 //all Available constants are here: 
 // https://github.com/arduino/ArduinoCore-avr/blob/master/cores/arduino/Arduino.h
-// Sine Wave Offline Verison 1
+// Sine Wave Offline Version 1
 const float Fs = 1000; // 1000Hz sampling rate
 const float f0 = 40; //40Hz frequency
 const float ts = 1/Fs;
