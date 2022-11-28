@@ -116,7 +116,7 @@ void loop() {
   // We use loop to set a 'promisy' update loop.
   // We will not update faster than 10 times a second
   updateControl();
-  delay(100); // Set to 100ms or 10Hz
+  delay(10); // Set to 100ms or 10Hz
   /*
    * DO NOT ADD YOU'RE OWN CODE HERE
    * 
@@ -137,6 +137,7 @@ float dw = w*ts;
 float angle = 0;
 
 int Amp=1;
+int WaveSelector=0;
 uint8_t sample = 0;
 int16_t counter = 0;
 
@@ -166,9 +167,15 @@ uint8_t updateAudio()
   float sig1 = sinwave_fun();  
   float sig2 = sgn_fun(sinwave_fun()); 
   float sig3 = sawtooth(sinwave_fun()); 
-  float sig =sig3;
+  float sig;
+  if (WaveSelector >= 0 && WaveSelector < 300)
+    {sig = sig1;}
+  else if (WaveSelector >= 300 && WaveSelector < 600)
+    {sig = sig2;}
+  else 
+    {sig = sig3;}
   //sig=(sig1+sig2+sig3)*Amp;
-  AudioValue=sig;
+  AudioValue=int(sig*255);
   //YW debug using Serail
   Serial.println(sig);
   return AudioValue;
@@ -184,7 +191,8 @@ void updateControl()
    */
   //f0 = 0.5;
   //w = TWO_PI*f0/Fs;
-  Amp = analogRead(A0);
+  WaveSelector = analogRead(A0);
+  //Serial.println(WaveSelector);
 }
 
 float sinwave_fun()
