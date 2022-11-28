@@ -175,9 +175,9 @@ uint8_t updateAudio()
   else 
     {sig = sig3;}
   //sig=(sig1+sig2+sig3)*Amp;
-  AudioValue=int(sig*255);
+  AudioValue=int((sig+1)*127);
   //YW debug using Serail
-  Serial.println(sig);
+  Serial.println(AudioValue);
   return AudioValue;
 }
 
